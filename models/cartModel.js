@@ -11,42 +11,21 @@ const cartSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: "Brand",
     },
-    brandName:{
+    agencyServicePlan:{
       type:String,
-    },
-    brandCountry:{
-      type: mongoose.Schema.ObjectId, 
-      ref: "Country",
-    },        
+      enum:["bronze","gold","platinum"]
+    },      
 
     project:{
       type: mongoose.Schema.ObjectId,
       ref: "Project",
     },
-    creativeType:{
-      type:String,
-      default:"video",
-      enum:["video","audio"]
-    },
+ 
     creativeLanguage:{
       type: mongoose.Schema.ObjectId,
       ref: "Language",
     },
-    creativeQuantity: {
-      type: Number,
-    },
-    creativeHookQuantity: {
-      type: Number,
-    },
-    creativeUnitPrice: {
-      type: Number,
-    },
-    creativeHookUnitPrice: {
-      type: Number,
-    },
-    createiveDeliveryDays: {
-      type: String,
-    },
+    
     isDeleted: {
       type: Boolean,
       default: false,
@@ -56,9 +35,7 @@ const cartSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: "Currency",
     },
-    currencyName: {
-      type: String,
-    },
+    
     refNumber: {
       type: String,
     },
@@ -77,29 +54,50 @@ const cartSchema = new mongoose.Schema(
       enum: ["unmarked-for-checkout", "marked-for-checkout", "checkedout"],
     },
     
-    category: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "Category",
-      },
-    ],
-    creatorCategoryCode:{
-      type:String,
-    },
-    creatorCategoryName:{
-      type:String,
-    },
-    grandTotal: {
-      type: Number,
-    },
-    
-
+   
     slug: {
       type: String,
     },
     creatorImage: {
       type: String,
     },
+
+    platforms: [
+      {
+        type: String,
+        enum:["facebook","instagram","twitter","tiktok","linkedin","blog"]
+      },
+    ],
+
+    facebookPostQuantity: {
+      type: Number,
+      default: 0,
+    },
+    instagramPostQuantity: {
+      type: Number,
+      default: 0,
+    },
+    twitterPostQuantity: {
+      type: Number,
+      default: 0,
+    },
+    tiktokPostQuantity: {
+      type: Number,
+      default: 0,
+    },
+    linkedInPostQuantity: {
+      type: Number,
+      default: 0,
+    },
+    blogPostQuantity: {
+      type: Number,
+      default: 0,
+    },
+
+
+
+
+
     
    
  
@@ -114,7 +112,14 @@ const cartSchema = new mongoose.Schema(
 
 cartSchema.pre(/^find/, function (next) {
   this.populate({
-    path: "category",
+    path: "creator",
+  });
+  next();
+});
+
+cartSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "brand",
   });
   next();
 });

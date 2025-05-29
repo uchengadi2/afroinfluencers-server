@@ -8,43 +8,17 @@ const transactionSchema = new mongoose.Schema(
       required: true,
     },
 
-    productCurrency: {
-      type: String,
-    },
 
-    totalDeliveryCost: {
-      type: Number,
-      default:0,
-    },
-    totalProductCost: {
+    totalLocalContractProcessingFee: {
       type: Number,
       default:0,
       
     },
-    grandTotal: {
+    
+    totalInternationalContractProcessingFee: {
       type: Number,
       default:0,
-    },
-    totalProductCostUk: {
-      type: Number,
-      default:0,
-    },
-    totalProductCostUs: {
-      type: Number,
-      default:0,
-    },
-    recipientName: {
-      type: String,
-      default:null
-    },
-    recipientPhoneNumber: {
-      type: String,
-      default:null
-    },
-    recipientEmailAddress: {
-      type: String,
-      default:null
-    },
+    },    
 
     transactionDate: {
       type: Date,
@@ -79,6 +53,10 @@ const transactionSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+     rejectedBy: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
     brand: {
       type: mongoose.Schema.ObjectId,
       ref: "Brand",
@@ -87,6 +65,25 @@ const transactionSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: "Project",
     },
+    totalNumberOfInfluencers: {
+      type: Number,
+      default: 0,
+    },  
+    recipientName: {
+      type: String,
+      required: false,
+    },
+    recipientPhoneNumber: {
+      type: String,
+      required: false,
+    },
+    recipientEmailAddress: {
+      type: String,
+      required: false,
+      validate: [validator.isEmail, "Please provide a valid email"],
+    },
+
+    
   },
   {
     toJSON: { virtuals: true },

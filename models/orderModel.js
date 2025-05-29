@@ -15,64 +15,43 @@ const orderSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: "Transaction",
     },
+     recipientName: {
+          type: String,
+          required: false,
+        },
+        recipientPhoneNumber: {
+          type: String,
+          required: false,
+        },
+        recipientEmailAddress: {
+          type: String,
+          required: false,
+          validate: [validator.isEmail, "Please provide a valid email"],
+        },
     creator: {
       type: mongoose.Schema.ObjectId,
       ref: "Creator",
     },
-    productCategory: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Category",
-    },
+     platforms: [
+      {
+        type: String,
+        enum:["facebook","instagram","twitter","tiktok","linkedin","blog"]
+      },
+    ],
    
-    quantityAdddedToCart: {
-      type: Number,
-      default:0,
-    },
-    orderedCreativeQuantity: {
-      type: Number,
-      default:0,
-    },
-    orderedHookQuantity: {
-      type: Number,
-      default:0,
-    },
-    
-    orderedCreativePricePerUnit: {
-      type: Number,
-      default:0,
-    },
-    orderedHookPricePerUnit:{
-      type:Number,
-      default:0,
-    },
-    productCurrency: {
+       
+    currency: {
       type: mongoose.Schema.ObjectId,
       ref: "Currency",
     },  
     
-    creativeType:{
-      type:String,
-      enum:["video","audio"]
-    },
     
-    totalProductCost: {
+    contractProcessingFee: {
       type: Number,
       default:0,
     },
    
-    recipientName: {
-      type: String,
-      default:null
-    },
-    recipientPhoneNumber: {
-      type: String,
-      default:null
-    },
-    recipientEmailAddress: {
-      type: String,
-      default:null
-    },
-
+    
     dateAddedToCart: {
       type: Date,
     },
@@ -111,8 +90,7 @@ const orderSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    
-   
+       
       
    slug: {
       type: String,
@@ -125,34 +103,7 @@ const orderSchema = new mongoose.Schema(
         ref: "Brand",
       },
     ],
-    language: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "Language",
-      },
-    ],
-    creativeLanguage: {
-      type:String,
-      default:null
-    },
-    creativeDeliveryDays:{
-      type: String,
-    },
-    image:{
-      type:String,
-    },
-    
-    creatorCategoryCode: {
-      type: String,
-    },
-    brandCountry: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Country",
-    },
-    
-    brandName: {
-      type: String,
-    },
+        
     
     project: [
       {
@@ -160,38 +111,167 @@ const orderSchema = new mongoose.Schema(
         ref: "Project",
       },
     ],
-    projectName: {
-      type: String,
-    },
-
-    creatives: [
-      {
-        type: String,
-        
-      },
-    ],
-
-    hooks: [
-      {
-        type: String,
-        
-      },
-    ],
-    creativesYoutubeIds: [
-      {
-        type: String,
-        
-      },
-    ],
-    creativeHooksYoutubeIds: [
-      {
-        type: String,
-        
-      },
-    ],
+    
     image:{
       type:String
     },
+    agencyServicePlan:{
+      type:String,
+      enum:["bronze","gold","platinum"]
+    }, 
+    // cumulativeAgencyServiceFee:{
+    //   type:Number,
+    //   default:0
+    // },
+ 
+
+    facebookPostQuantity: {
+      type: Number,
+      default: 0,
+    },
+    instagramPostQuantity: {
+      type: Number,
+      default: 0,
+    },
+    twitterPostQuantity: {
+      type: Number,
+      default: 0,
+    },
+    tiktokPostQuantity: {
+      type: Number,
+      default: 0,
+    },
+    linkedInPostQuantity: {
+      type: Number,
+      default: 0,
+    },
+    blogPostQuantity: {
+      type: Number,
+      default: 0,
+    },   
+
+    facebookProfileLink:{
+      type:String,
+      default:null
+    },
+    instagramProfileLink:{
+      type:String,
+      default:null
+    },
+    twitterProfileLink:{
+      type:String,
+      default:null
+    },
+    tiktokProfileLink:{
+      type:String,
+      default:null
+    },
+   linkedInProfileLink:{
+      type:String,
+      default:null
+    },
+    blogSiteLink:{
+      type:String,
+      default:null
+    },
+    facebookTotalFollowers:{
+      type:Number,
+      default:0
+    },
+
+    instagramTotalFollowers:{
+      type:Number,
+      default:0
+    },
+    twitterTotalFollowers:{
+      type:Number,
+      default:0
+    },
+    tiktokTotalFollowers:{
+      type:Number,
+      default:0
+    },
+    linkedInTotalFollowers:{
+      type:Number,
+      default:0
+    },
+    blogTotalVisitorsPerMonth:{
+      type:Number,
+      default:0
+    },
+    facebookEngagementRate:{
+      type:Number,
+      default:0
+    },
+    instagramEngagementRate:{
+      type:Number,
+      default:0
+    },
+    twitterEngagementRate:{
+      type:Number,
+      default:0
+    },
+   tiktokEngagementRate:{
+      type:Number,
+      default:0
+    },
+    linkedInEngagementRate:{
+      type:Number,
+      default:0
+    },
+     facebookCostPerPost:{
+      type:Number,
+      default:0
+    },
+    instagramCostPerPost:{
+      type:Number,
+      default:0
+    },
+    twitterCostPerPost:{
+      type:Number,
+      default:0
+    },
+    tiktokCostPerPost:{
+      type:Number,
+      default:0
+    },
+    linkedInCostPerPost:{
+      type:Number,
+      default:0
+    },
+    blogCostPerPost:{
+      type:Number,
+      default:0
+    },
+    blogPostCostDuration:{
+      type:String,
+      enum:["daily","weekly","bi-weekly","monthly"]
+    },
+    facebookCategory:{    
+      type:String,
+      default:null
+    },
+    instagramCategory:{    
+      type:String,
+      default:null
+    },  
+    twitterCategory:{    
+      type:String,
+      default:null
+    },
+    tiktokCategory:{    
+      type:String,
+      default:null
+    },
+    linkedInCategory:{    
+      type:String,
+      default:null
+    },
+    blogCategory:{    
+      type:String,
+      default:null
+    },
+
     markForCompletionBy: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
@@ -233,26 +313,15 @@ orderSchema.pre(/^find/, function (next) {
   next();
 });
 
+
+
 orderSchema.pre(/^find/, function (next) {
   this.populate({
-    path: "language",
+    path: "currency",
   });
   next();
 });
 
-orderSchema.pre(/^find/, function (next) {
-  this.populate({
-    path: "productCurrency",
-  });
-  next();
-});
-
-orderSchema.pre(/^find/, function (next) {
-  this.populate({
-    path: "brandCountry",
-  });
-  next();
-});
 
 orderSchema.pre(/^find/, function (next) {
   this.populate({
@@ -266,12 +335,7 @@ orderSchema.pre(/^find/, function (next) {
   });
   next();
 });
-orderSchema.pre(/^find/, function (next) {
-  this.populate({
-    path: "productCategory",
-  });
-  next();
-});
+
 
 orderSchema.pre(/^find/, function (next) {
   this.populate({

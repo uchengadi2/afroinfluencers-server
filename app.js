@@ -55,7 +55,8 @@ const nicheRoute = require("./routes/nicheRoute");
 const projectRoute = require("./routes/projectRoute");
 const creatorRoute = require("./routes/creatorRoute");
 const brandRoute = require("./routes/brandRoute");
-const creatorSample = require("./routes/creatorSampleRoute");
+const creatorSampleRoute = require("./routes/creatorSampleRoute");
+const platformRoute = require("./routes/platformRoute");
 
 const app = express();
 
@@ -167,7 +168,10 @@ app.use("/api/v1/niches", nicheRoute);
 app.use("/api/v1/projects", projectRoute);
 app.use("/api/v1/creators", creatorRoute);
 app.use("/api/v1/brands", brandRoute);
-app.use("/api/v1/samples", creatorSample);
+app.use("/api/v1/samples", creatorSampleRoute);
+app.use("/api/v1/platforms", platformRoute);
+
+
 
 
 

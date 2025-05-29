@@ -25,32 +25,7 @@ const creatorSchema = new mongoose.Schema(
         },
       ],
    
-    videoPrice:{
-          type:Number,
-          default:0
-        },
-        videoHookPrice:{
-          type:Number,
-          default:0
-        },
-        videoDeliveryDays:{
-          type:Number,
-          default:0
-        },
-      
-        soundPrice:{
-          type:Number,
-          default:0
-        },
-        soundHookPrice:{
-          type:Number,
-          default:0
-        },
-        soundDeliveryDays:{
-          type:Number,
-          default:0
-        },
-       
+    
         
         age:{
           type:Number
@@ -60,11 +35,7 @@ const creatorSchema = new mongoose.Schema(
           default:"male",
           enum:["male","female","prefer-not-to-say"]
         },
-        rate:{
-          type:String,
-          default:"not-rated",
-          enum:["topmost-rated","top-rated","rated","not-rated"]
-        },
+       
     
     
          country: [
@@ -154,6 +125,143 @@ const creatorSchema = new mongoose.Schema(
       type: Date,
      
     },
+    //  platforms: [
+    //   {
+    //     type: mongoose.Schema.ObjectId,
+    //     ref: "Platform",
+    //   },
+    // ],
+    platforms: [
+      {
+        type: String,
+        enum:["facebook","instagram","twitter","tiktok","linkedin","blog"]
+      },
+    ],
+   
+    facebookProfileLink:{
+      type:String,
+      default:null
+    },
+    instagramProfileLink:{
+      type:String,
+      default:null
+    },
+    twitterProfileLink:{
+      type:String,
+      default:null
+    },
+    tiktokProfileLink:{
+      type:String,
+      default:null
+    },
+   linkedInProfileLink:{
+      type:String,
+      default:null
+    },
+    blogSiteLink:{
+      type:String,
+      default:null
+    },
+    facebookTotalFollowers:{
+      type:Number,
+      default:0
+    },
+
+    instagramTotalFollowers:{
+      type:Number,
+      default:0
+    },
+    twitterTotalFollowers:{
+      type:Number,
+      default:0
+    },
+    tiktokTotalFollowers:{
+      type:Number,
+      default:0
+    },
+    linkedInTotalFollowers:{
+      type:Number,
+      default:0
+    },
+    blogTotalVisitorsPerMonth:{
+      type:Number,
+      default:0
+    },
+    facebookEngagementRate:{
+      type:Number,
+      default:0
+    },
+    instagramEngagementRate:{
+      type:Number,
+      default:0
+    },
+    twitterEngagementRate:{
+      type:Number,
+      default:0
+    },
+   tiktokEngagementRate:{
+      type:Number,
+      default:0
+    },
+    linkedInEngagementRate:{
+      type:Number,
+      default:0
+    },
+     facebookCostPerPost:{
+      type:Number,
+      default:0
+    },
+    instagramCostPerPost:{
+      type:Number,
+      default:0
+    },
+    twitterCostPerPost:{
+      type:Number,
+      default:0
+    },
+    tiktokCostPerPost:{
+      type:Number,
+      default:0
+    },
+    linkedInCostPerPost:{
+      type:Number,
+      default:0
+    },
+    blogCostPerPost:{
+      type:Number,
+      default:0
+    },
+    blogPostCostDuration:{
+      type:String,
+      enum:["daily","weekly","bi-weekly","monthly"]
+    },
+    facebookCategory:{    
+      type:String,
+      default:null
+    },
+    instagramCategory:{    
+      type:String,
+      default:null
+    },  
+    twitterCategory:{    
+      type:String,
+      default:null
+    },
+    tiktokCategory:{    
+      type:String,
+      default:null
+    },
+    linkedInCategory:{    
+      type:String,
+      default:null
+    },
+    blogCategory:{    
+      type:String,
+      default:null
+    },
+    
+   
+
      
   },
   {
