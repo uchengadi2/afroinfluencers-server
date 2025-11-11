@@ -6,6 +6,10 @@ const creatorSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide the name of the creator"],
     },
+    refNumber:{
+      type:String,
+      
+    },
     bio:{
       type:String,
       default:null,
