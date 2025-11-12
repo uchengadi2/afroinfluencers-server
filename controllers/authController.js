@@ -47,14 +47,14 @@ exports.signup = catchAsync(async (req, res, next) => {
     passwordChangedAt: req.body.passwordChangedAt,
     role: req.body.role,
     passwordResetToken: req.body.passwordResetToken,
-    vendor: req.body.vendor,
+    type: req.body.type,
     phoneNumber: req.body.phoneNumber,
   });
 
   //const url = `${req.protocol}://${req.get("host")}/api/v1/users/login`;  
   const url = `${req.get("origin")}`; 
   
-  await new Email(newUser, url).sendWelcome();
+  //await new Email(newUser, url).sendWelcome();
   createSendToken(newUser, 201, res);
 });
 
